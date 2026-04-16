@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<title>Ivan & Kseniya | Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant:wght@300;400;500&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --accent: #6b7355;
+    --bg: #ffffff;
+    --text-dark: #2a2a2a;
+    --text-light: #666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cormorant', serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    background: var(--bg);
+}
+
+.section {
+    padding: 50px 24px;
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    right: 30px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.15;
+}
+
+.section.show {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+.title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 10vw, 52px);
+    letter-spacing: 6px;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.script {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(36px, 10vw, 48px);
+    margin-bottom: 20px;
+    color: var(--accent);
+    line-height: 1.2;
+}
+
+.date {
+    font-style: italic;
+    margin: 10px 0 20px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.names h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 8vw, 40px);
+    font-weight: 400;
+    margin-bottom: 8px;
+    text-transform: none;
+}
+
+.names span {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: var(--accent);
+}
+
+.text {
+    margin: 20px 0;
+    line-height: 1.8;
+    font-size: clamp(16px, 4vw, 18px);
+}
+
+.photo {
+    width: 85%;
+    margin: 25px auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.photo-small {
+    width: 60%;
+    margin: 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.photo img, .photo-small img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin: 25px auto;
+    max-width: 320px;
+}
+
+.day-cell {
+    padding: 10px 5px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart-day {
+    position: relative;
+    color: var(--accent);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heart-day svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    z-index: 0;
+}
+
+.heart-day span {
+    position: relative;
+    z-index: 1;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 30px 0 10px;
+}
+
+.event {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 0 15px 25px;
+    border-left: 2px solid var(--accent);
+    position: relative;
+    text-align: left;
+}
+
+.event::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: absolute;
+    left: -8px;
+    top: 22px;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--accent);
+}
+
+.event-time {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    color: var(--accent);
+    margin-bottom: 6px;
+}
+
+.event-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.event-desc {
+    font-size: 14px;
+    color: var(--text-light);
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.dress-text {
+    margin: 20px 0 10px;
+    font-size: 16px;
+}
+
+.dress-text p {
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    border-radius: 40px;
+    text-decoration: none;
+    margin: 20px 0 10px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background: transparent;
+}
+
+.btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* Слайдер */
+.slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    margin: 25px 0 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.slider-large {
+    margin: 25px -10px 10px;
+}
+
+.slider-large .slide img {
+    height: 420px;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 350px;
+    display: block;
+    border-radius: 24px;
+    object-fit: cover;
+}
+
+.slider-large .slide img {
+    height: 450px;
+}
+
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 12px;
+}
+
+.nav-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav-dot.active {
+    background: var(--accent);
+    transform: scale(1.3);
+}
+
+/* Форма */
+.rsvp-form {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    background: white;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7355' d='M6 9L1 4h10z'/%3E%3Csvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px;
+}
+
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 10px 0;
+}
+
+.radio-item, .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+}
+
+.radio-item input, .checkbox-item input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent);
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 20px;
+    border: none;
+    background: var(--accent);
+    color: white;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: #5a6345;
+    transform: translateY(-2px);
+}
+
+.map-container {
+    margin: 25px 0 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 250px;
+    border: none;
+    display: block;
+}
+
+.final-text {
+    margin: 30px 0 10px;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: var(--accent);
+    margin-top: 15px;
+}
+
+/* Адаптивність */
+@media (min-width: 768px) {
+    .wrapper {
+        max-width: 700px;
+    }
+    .photo, .photo-small {
+        width: 65%;
+    }
+    .calendar-grid {
+        max-width: 400px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .wrapper {
+        max-width: 850px;
+    }
+    .photo, .photo-small {
+        width: 50%;
+    }
+    .section {
+        padding: 70px 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 40px 20px;
+    }
+    .photo-small {
+        width: 70%;
+    }
+    .slide img {
+        height: 280px;
+    }
+    .slider-large .slide img {
+        height: 350px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<!-- HERO з англійськими іменами -->
+<div class="section">
+    <div class="title">WEDDING</div>
+    <div class="date">07.07.2026</div>
+    <div class="photo">
+        <img src="молодые.jpg" alt="Ivan and Kseniya">
+    </div>
+    <div class="names">
+        <h2>Ivan & Kseniya</h2>
+        <span>Wedding Day</span>
+    </div>
+    <div class="text">
+        Дорогі друзі та рідні!<br>
+        З величезною радістю запрошуємо Вас розділити важливу подію — день нашого весілля!
+    </div>
+</div>
+
+<!-- КАЛЕНДАР ТА ПРИВІТАННЯ -->
+<div class="section">
+    <div class="script">Липень 2026</div>
+    <div class="calendar-grid">
+        <div class="day-cell">Пн</div><div class="day-cell">Вт</div><div class="day-cell">Ср</div><div class="day-cell">Чт</div><div class="day-cell">Пт</div><div class="day-cell">Сб</div><div class="day-cell">Нд</div>
+        <div class="day-cell"></div><div class="day-cell"></div><div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell">3</div><div class="day-cell">4</div><div class="day-cell">5</div>
+        <div class="day-cell">6</div>
+        <div class="day-cell heart-day">
+            <span>7</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="day-cell">8</div><div class="day-cell">9</div><div class="day-cell">10</div><div class="day-cell">11</div><div class="day-cell">12</div>
+        <div class="day-cell">13</div><div class="day-cell">14</div><div class="day-cell">15</div><div class="day-cell">16</div><div class="day-cell">17</div><div class="day-cell">18</div><div class="day-cell">19</div>
+        <div class="day-cell">20</div><div class="day-cell">21</div><div class="day-cell">22</div><div class="day-cell">23</div><div class="day-cell">24</div><div class="day-cell">25</div><div class="day-cell">26</div>
+        <div class="day-cell">27</div><div class="day-cell">28</div><div class="day-cell">29</div><div class="day-cell">30</div><div class="day-cell">31</div><div class="day-cell"></div><div class="day-cell"></div>
+    </div>
+    <div class="photo-small">
+        <img src="пара.jpg" alt="Ivan and Kseniya">
+    </div>
+    <div class="text">
+        Будемо раді бачити вас у колі наших гостей<br>
+        <span style="font-family:'Great Vibes',cursive;font-size:28px;color:var(--accent);">Ваня і Ксюша</span>
+    </div>
+</div>
+
+<!-- ЛОКАЦІЯ -->
+<div class="section">
+    <div class="script">Локація</div>
+    <div class="text" style="font-size:18px;">
+        <strong>Karma House</strong><br>
+        Gościeńczyce 40A<br>
+        05-600 Grójec<br>
+        <span style="font-size:14px;opacity:0.7;">(20 км від Piaseczna)</span>
+    </div>
+    <div class="text">
+        Для вашої зручності буде організовано трансфер
+    </div>
+    
+    <div class="slider location-slider">
+        <div class="slides">
+            <div class="slide"><img src="1.jpg" alt="Локація 1"></div>
+            <div class="slide"><img src="2.jpg" alt="Локація 2"></div>
+            <div class="slide"><img src="3.jpg" alt="Локація 3"></div>
+        </div>
+    </div>
+    <div class="slider-nav location-nav">
+        <div class="nav-dot active"></div>
+        <div class="nav-dot"></div>
+        <div class="nav-dot"></div>
+    </div>
+    
+    <a href="https://maps.app.goo.gl/embed?pb=!1m18!1m12!1m3!1d2443.785123456789!2d20.9482905!3d51.9108632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471923bb5e6e3745%3A0xd9470cd668405dd3!2sKarma%20House!5e0!3m2!1suk!2spl!4v1234567890" class="btn" target="_blank">Перейти до карти</a>
+</div>
+
+<!-- ТАЙМІНГ -->
+<div class="section">
+    <div class="script">Програма дня</div>
+    <div class="timeline">
+        <div class="event">
+            <div class="event-time">12:00</div>
+            <div class="event-title">Вінчання в костелі</div>
+            <div class="event-desc">Parafia NMP Matki Kościoła w Warszawie, Domaniewska 20. Важлива частина нашого свята. Будемо раді розділити її з Вами.</div>
+        </div>
+        <div class="event">
+            <div class="event-time">14:00</div>
+            <div class="event-title">Збір гостей та трансфер</div>
+            <div class="event-desc">Просимо взяти з собою гарний настрій та свої усмішки</div>
+        </div>
+        <div class="event">
+            <div class="event-time">15:00</div>
+            <div class="event-title">Церемонія</div>
+            <div class="event-desc">Ви станете свідками зворушливого моменту. Приготуйте хустинки</div>
+        </div>
+        <div class="event">
+            <div class="event-time">16:00</div>
+            <div class="event-title">Святковий банкет</div>
+            <div class="event-desc">Час смачної їжі, танців та розваг!</div>
+        </div>
+    </div>
+</div>
+
+<!-- ДРЕС-КОД -->
+<div class="section">
+    <div class="script">Дрес-код</div>
+    <div class="dress-text">
+        <p>Дівчата: вечірні сукні, брючні костюми</p>
+        <p>Чоловіки: брючні костюми, офіційний стиль</p>
+    </div>
+</div>
+
+<!-- LOVE STORY SLIDER -->
+<div class="section">
+    <div class="script">Історія кохання</div>
+    <div class="slider story-slider slider-large">
+        <div class="slides">
+            <div class="slide"><img src="4.jpg" alt="Історія 1"></div>
+            <div class="slide"><img src="5.jpg" alt="Історія 2"></div>
+            <div class="slide"><img src="6.jpg" alt="Історія 3"></div>
+        </div>
+    </div>
+    <div class="slider-nav story-nav">
+        <div class="nav-dot active"></div>
+        <div class="nav-dot"></div>
+        <div class="nav-dot"></div>
+    </div>
+</div>
+
+<!-- RSVP ФОРМА -->
+<div class="section">
+    <div class="script">Анкета підтвердження</div>
+    <div class="text">Будемо вдячні, якщо Ви повідомите нам про своє рішення до 30.05.2026</div>
+    
+    <form class="rsvp-form" id="rsvpForm">
+        <div class="form-group">
+            <label class="form-label">Ваше ім'я та прізвище</label>
+            <input type="text" placeholder="Іван Іванов" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Чи плануєте бути присутніми?</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="attendance" value="yes" checked> Так, із задоволенням</label>
+                <label class="radio-item"><input type="radio" name="attendance" value="no"> На жаль, не зможу</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Номер телефону для зв'язку</label>
+            <input type="tel" placeholder="Ваш номер телефону">
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Чи потрібне Вам розміщення?</label>
+            <div class="radio-group">
+                <label class="radio-item"><input type="radio" name="accommodation" value="yes"> Так</label>
+                <label class="radio-item"><input type="radio" name="accommodation" value="no" checked> Ні</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Якому алкоголю надаєте перевагу?</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" value="strong"> Міцні напої</label>
+                <label class="checkbox-item"><input type="checkbox" value="sparkling"> Ігристе вино / шампанське</label>
+                <label class="checkbox-item"><input type="checkbox" value="wine"> Вино (червоне/біле)</label>
+                <label class="checkbox-item"><input type="checkbox" value="none"> Не вживаю алкоголь</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Додатково</label>
+            <textarea rows="3" placeholder="Ваші побажання, запитання, алергії..."></textarea>
+        </div>
+        
+        <button type="submit">Надіслати</button>
+    </form>
+</div>
+
+<!-- КАРТА -->
+<div class="section">
+    <div class="script">Місце свята</div>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.785123456789!2d20.9482905!3d51.9108632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471923bb5e6e3745%3A0xd9470cd668405dd3!2sKarma%20House!5e0!3m2!1suk!2spl!4v1234567890" allowfullscreen loading="lazy"></iframe>
+    </div>
+</div>
+
+<!-- ФІНАЛ -->
+<div class="section">
+    <div class="final-text">
+        Чекаємо Вас на нашому святі!
+    </div>
+    <div class="signature">
+        З любов'ю, Ксенія та Іван
+    </div>
+</div>
+
+</div>
+
+<script>
+// Анімація блоків
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.15 });
+sections.forEach(sec => observer.observe(sec));
+
+// Функція слайдера
+function createSlider(sliderSelector, navSelector) {
+    const slider = document.querySelector(sliderSelector);
+    if (!slider) return;
+    
+    const slides = slider.querySelector('.slides');
+    const dots = document.querySelectorAll(navSelector + ' .nav-dot');
+    const slideCount = slides.children.length;
+    let currentIndex = 0;
+    let interval;
+    
+    function showSlide(index) {
+        if (index < 0) index = 0;
+        if (index >= slideCount) index = slideCount - 1;
+        currentIndex = index;
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+    
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            showSlide(i);
+            resetInterval();
+        });
+    });
+    
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slideCount;
+        showSlide(currentIndex);
+    }
+    
+    function resetInterval() {
+        clearInterval(interval);
+        interval = setInterval(nextSlide, 5000);
+    }
+    
+    interval = setInterval(nextSlide, 5000);
+    
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            currentIndex = (currentIndex + 1) % slideCount;
+            showSlide(currentIndex);
+            resetInterval();
+        }
+        if (touchEndX > touchStartX + swipeThreshold) {
+            currentIndex = currentIndex === 0 ? slideCount - 1 : currentIndex - 1;
+            showSlide(currentIndex);
+            resetInterval();
+        }
+    }
+}
+
+createSlider('.location-slider', '.location-nav');
+createSlider('.story-slider', '.story-nav');
+
+// Форма
+document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button');
+    const originalText = btn.textContent;
+    btn.textContent = 'НАДСИЛАННЯ...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        alert('Дякуємо! Вашу відповідь отримано. Чекаємо вас на святі!');
+        this.reset();
+        btn.textContent = originalText;
+        btn.disabled = false;
+    }, 1000);
+});
+
+window.addEventListener('load', () => {
+    document.querySelector('.section').classList.add('show');
+});
+</script>
+
+</body>
+</html>

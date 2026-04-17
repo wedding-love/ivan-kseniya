@@ -326,7 +326,12 @@ body {
     color: var(--text-dark);
 }
 
-input, select, textarea {
+/* Стили для текстовых полей и селектов */
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select,
+textarea {
     width: 100%;
     padding: 14px 16px;
     border: 1.5px solid #e0e0e0;
@@ -339,18 +344,23 @@ input, select, textarea {
     appearance: none;
 }
 
-input:focus, select:focus, textarea:focus {
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
     border-color: var(--accent);
     outline: none;
 }
 
 select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7355' d='M6 9L1 4h10z'/%3E%3Csvg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7355' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 16px center;
     background-size: 12px;
 }
 
+/* Стили для радио и чекбоксов - возвращаем стандартный вид */
 .radio-group, .checkbox-group {
     display: flex;
     flex-direction: column;
@@ -366,13 +376,27 @@ select {
     cursor: pointer;
 }
 
-.radio-item input, .checkbox-item input {
+/* ВАЖНО: Возвращаем стандартный вид для чекбоксов и радио */
+.radio-item input[type="radio"] {
+    -webkit-appearance: radio !important;
+    appearance: radio !important;
     width: 20px;
     height: 20px;
-    accent-color: var(--accent);
     margin: 0;
     padding: 0;
     cursor: pointer;
+    accent-color: var(--accent);
+}
+
+.checkbox-item input[type="checkbox"] {
+    -webkit-appearance: checkbox !important;
+    appearance: checkbox !important;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    accent-color: var(--accent);
 }
 
 button {

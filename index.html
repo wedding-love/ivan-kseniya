@@ -452,6 +452,13 @@ button:disabled {
     margin-top: 15px;
 }
 
+/* Стиль для обязательных полей */
+.required-asterisk {
+    color: #e74c3c;
+    margin-left: 4px;
+    font-weight: bold;
+}
+
 /* Адаптивність */
 @media (min-width: 768px) {
     .wrapper {
@@ -628,15 +635,15 @@ button:disabled {
     
     <form class="rsvp-form" id="rsvpForm">
         <div class="form-group">
-            <label class="form-label">Ваше ім'я та прізвище</label>
+            <label class="form-label">Ваше ім'я та прізвище <span class="required-asterisk">*</span></label>
             <input type="text" name="name" placeholder="Іван Іванов" required>
         </div>
         
         <div class="form-group">
-            <label class="form-label">Чи плануєте бути присутніми?</label>
+            <label class="form-label">Чи плануєте бути присутніми? <span class="required-asterisk">*</span></label>
             <div class="radio-group">
                 <label class="radio-item">
-                    <input type="radio" name="attendance" value="Так, із задоволенням" checked> Так, із задоволенням
+                    <input type="radio" name="attendance" value="Так, із задоволенням"> Так, із задоволенням
                 </label>
                 <label class="radio-item">
                     <input type="radio" name="attendance" value="На жаль, не зможу"> На жаль, не зможу
@@ -656,7 +663,7 @@ button:disabled {
                     <input type="radio" name="accommodation" value="Так"> Так
                 </label>
                 <label class="radio-item">
-                    <input type="radio" name="accommodation" value="Ні" checked> Ні
+                    <input type="radio" name="accommodation" value="Ні"> Ні
                 </label>
             </div>
         </div>
@@ -822,6 +829,20 @@ const submitBtn = document.getElementById('submitBtn');
 form.addEventListener('submit', async function(e) {
     e.preventDefault();
     
+    // Проверка обязательных полей
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const attendance = form.querySelector('input[name="attendance"]:checked');
+    
+    if (!name) {
+        alert('Будь ласка, вкажіть ваше ім\'я та прізвище');
+        return;
+    }
+    
+    if (!attendance) {
+        alert('Будь ласка, вкажіть чи плануєте бути присутніми');
+        return;
+    }
+    
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Надсилання...';
     submitBtn.disabled = true;
@@ -833,14 +854,18 @@ form.addEventListener('submit', async function(e) {
     const alcoholCheckboxes = form.querySelectorAll('input[name="alcohol"]:checked');
     const alcoholValues = Array.from(alcoholCheckboxes).map(cb => cb.value);
     
+    // Получаем размещение (может быть не выбрано)
+    const accommodationRadio = form.querySelector('input[name="accommodation"]:checked');
+    const accommodation = accommodationRadio ? accommodationRadio.value : '';
+    
     // Создаём объект данных
     const data = {
-        name: formData.get('name'),
-        attendance: formData.get('attendance'),
-        phone: formData.get('phone'),
-        accommodation: formData.get('accommodation'),
+        name: name,
+        attendance: attendance.value,
+        phone: formData.get('phone') || '',
+        accommodation: accommodation,
         alcohol: alcoholValues,
-        message: formData.get('message')
+        message: formData.get('message') || ''
     };
     
     try {
@@ -855,9 +880,7 @@ form.addEventListener('submit', async function(e) {
         if (response.ok) {
             alert('Дякуємо! Ваші відповіді надіслано. Чекаємо вас на святі!');
             form.reset();
-            // Возвращаем checked по умолчанию для радиокнопок
-            document.querySelector('input[name="attendance"][value="Так, із задоволенням"]').checked = true;
-            document.querySelector('input[name="accommodation"][value="Ні"]').checked = true;
+            // Никакие радио-кнопки не выбираются автоматически после reset
         } else {
             alert('Виникла помилка. Спробуйте ще раз або звʼяжіться з нами.');
         }

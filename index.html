@@ -25,7 +25,8 @@ body {
     font-family: 'Cormorant', serif;
     background: var(--bg);
     color: var(--text-dark);
-    line-height: 1.5;
+    line-height: 1.7;
+    font-size: 20px;
 }
 
 .wrapper {
@@ -64,50 +65,66 @@ body {
 
 .title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 10vw, 52px);
-    letter-spacing: 6px;
-    margin-bottom: 10px;
+    font-size: clamp(52px, 14vw, 72px);
+    letter-spacing: 10px;
+    margin-bottom: 15px;
     font-weight: 400;
 }
 
 .script {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(36px, 10vw, 48px);
-    margin-bottom: 20px;
+    font-size: clamp(46px, 14vw, 62px);
+    margin-bottom: 25px;
     color: var(--accent);
     line-height: 1.2;
 }
 
 .date {
     font-style: italic;
-    margin: 10px 0 20px;
-    font-size: 18px;
-    letter-spacing: 2px;
+    margin: 15px 0 25px;
+    font-size: 28px;
+    letter-spacing: 4px;
+    font-weight: 300;
+}
+
+.date-large {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 12vw, 56px);
+    font-weight: 400;
+    letter-spacing: 8px;
+    color: var(--accent);
+    margin: 20px 0;
+    padding: 20px 0;
+    border-top: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+    opacity: 0.9;
+    text-transform: uppercase;
 }
 
 .names h2 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 8vw, 40px);
+    font-size: clamp(36px, 12vw, 52px);
     font-weight: 400;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-transform: none;
 }
 
 .names span {
     font-family: 'Great Vibes', cursive;
-    font-size: 28px;
+    font-size: 36px;
     color: var(--accent);
 }
 
 .text {
-    margin: 20px 0;
-    line-height: 1.8;
-    font-size: clamp(16px, 4vw, 18px);
+    margin: 25px 0;
+    line-height: 2;
+    font-size: clamp(20px, 6vw, 24px);
 }
 
 .photo {
     width: 85%;
-    margin: 25px auto;
+    margin: 30px auto;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -115,7 +132,7 @@ body {
 
 .photo-small {
     width: 60%;
-    margin: 20px auto;
+    margin: 25px auto;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -131,20 +148,19 @@ body {
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-    margin: 25px auto;
-    max-width: 320px;
+    gap: 8px;
+    margin: 30px auto;
+    max-width: 380px;
 }
 
 .day-cell {
-    padding: 10px 5px;
-    font-size: 16px;
+    padding: 14px 6px;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Стили для сердечка с анимацией через JS */
 .heart-day {
     position: relative;
     color: var(--accent);
@@ -159,8 +175,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     z-index: 0;
     pointer-events: none;
     transition: opacity 0.3s ease-in-out;
@@ -169,20 +185,22 @@ body {
 .heart-day span {
     position: relative;
     z-index: 1;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .timeline {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    margin: 30px 0 10px;
+    gap: 30px;
+    margin: 35px 0 15px;
 }
 
 .event {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 15px 0 15px 25px;
+    padding: 20px 0 20px 30px;
     border-left: 2px solid var(--accent);
     position: relative;
     text-align: left;
@@ -190,60 +208,60 @@ body {
 
 .event::before {
     content: "";
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     background: var(--accent);
     border-radius: 50%;
     position: absolute;
-    left: -8px;
-    top: 22px;
+    left: -9px;
+    top: 28px;
     border: 2px solid white;
     box-shadow: 0 0 0 2px var(--accent);
 }
 
 .event-time {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 600;
     font-family: 'Playfair Display', serif;
     color: var(--accent);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .event-title {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 500;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .event-desc {
-    font-size: 14px;
+    font-size: 18px;
     color: var(--text-light);
     font-style: italic;
-    line-height: 1.5;
+    line-height: 1.7;
 }
 
 .dress-text {
-    margin: 20px 0 10px;
-    font-size: 16px;
+    margin: 25px 0 15px;
+    font-size: 20px;
 }
 
 .dress-text p {
     font-weight: 400;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .btn {
     display: inline-block;
-    padding: 14px 32px;
-    border: 1.5px solid var(--accent);
+    padding: 18px 40px;
+    border: 2px solid var(--accent);
     color: var(--accent);
     border-radius: 40px;
     text-decoration: none;
-    margin: 20px 0 10px;
+    margin: 25px 0 15px;
     transition: all 0.3s ease;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     background: transparent;
 }
 
@@ -252,17 +270,16 @@ body {
     color: white;
 }
 
-/* Слайдер */
 .slider {
     position: relative;
     overflow: hidden;
     border-radius: 24px;
-    margin: 25px 0 10px;
+    margin: 30px 0 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .slider-large {
-    margin: 25px -10px 10px;
+    margin: 30px -10px 15px;
 }
 
 .slides {
@@ -277,26 +294,26 @@ body {
 
 .slide img {
     width: 100%;
-    height: 350px;
+    height: 400px;
     display: block;
     border-radius: 24px;
     object-fit: cover;
 }
 
 .slider-large .slide img {
-    height: 520px;
+    height: 580px;
 }
 
 .slider-nav {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
-    gap: 12px;
+    margin-top: 20px;
+    gap: 15px;
 }
 
 .nav-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: #ccc;
     cursor: pointer;
@@ -308,35 +325,34 @@ body {
     transform: scale(1.3);
 }
 
-/* Форма */
 .rsvp-form {
     text-align: left;
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .form-label {
     display: block;
-    margin-bottom: 8px;
-    font-size: 15px;
+    margin-bottom: 12px;
+    font-size: 19px;
     font-weight: 500;
     color: var(--text-dark);
 }
 
-/* Стили для текстовых полей и селектов */
 input[type="text"],
 input[type="tel"],
 input[type="email"],
+input[type="number"],
 select,
 textarea {
     width: 100%;
-    padding: 14px 16px;
+    padding: 16px 18px;
     border: 1.5px solid #e0e0e0;
     border-radius: 12px;
-    font-size: 15px;
+    font-size: 17px;
     font-family: 'Montserrat', sans-serif;
     background: white;
     transition: border-color 0.3s;
@@ -347,6 +363,7 @@ textarea {
 input[type="text"]:focus,
 input[type="tel"]:focus,
 input[type="email"]:focus,
+input[type="number"]:focus,
 select:focus,
 textarea:focus {
     border-color: var(--accent);
@@ -354,65 +371,101 @@ textarea:focus {
 }
 
 select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7355' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%236b7355' d='M7 10L1 4h12z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 16px center;
-    background-size: 12px;
+    background-position: right 18px center;
+    background-size: 14px;
+    padding-right: 45px;
 }
 
-/* Стили для радио и чекбоксов - возвращаем стандартный вид */
+/* Для select в меню - более компактный шрифт */
+select option {
+    font-size: 15px;
+    padding: 10px;
+}
+
 .radio-group, .checkbox-group {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin: 10px 0;
+    gap: 14px;
+    margin: 12px 0;
 }
 
 .radio-item, .checkbox-item {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 15px;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 17px;
     cursor: pointer;
+    line-height: 1.5;
 }
 
-/* ВАЖНО: Возвращаем стандартный вид для чекбоксов и радио */
 .radio-item input[type="radio"] {
     -webkit-appearance: radio !important;
     appearance: radio !important;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     margin: 0;
+    margin-top: 2px;
     padding: 0;
     cursor: pointer;
     accent-color: var(--accent);
+    flex-shrink: 0;
 }
 
 .checkbox-item input[type="checkbox"] {
     -webkit-appearance: checkbox !important;
     appearance: checkbox !important;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     margin: 0;
+    margin-top: 2px;
     padding: 0;
     cursor: pointer;
     accent-color: var(--accent);
+    flex-shrink: 0;
+}
+
+.menu-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid var(--accent);
+}
+
+.menu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.menu-subtitle {
+    font-size: 19px;
+    font-weight: 500;
+    margin: 25px 0 12px;
+    color: var(--text-dark);
+}
+
+.menu-select {
+    margin-bottom: 15px;
 }
 
 button {
     width: 100%;
-    padding: 16px;
-    margin-top: 20px;
+    padding: 20px;
+    margin-top: 25px;
     border: none;
     background: var(--accent);
     color: white;
     border-radius: 40px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s;
     font-family: 'Montserrat', sans-serif;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 button:hover {
@@ -426,7 +479,7 @@ button:disabled {
 }
 
 .map-container {
-    margin: 25px 0 10px;
+    margin: 30px 0 15px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -434,32 +487,58 @@ button:disabled {
 
 .map-container iframe {
     width: 100%;
-    height: 250px;
+    height: 300px;
     border: none;
     display: block;
 }
 
 .final-text {
-    margin: 30px 0 10px;
-    font-size: 18px;
+    margin: 35px 0 15px;
+    font-size: 22px;
     font-style: italic;
 }
 
 .signature {
     font-family: 'Great Vibes', cursive;
-    font-size: 36px;
+    font-size: 48px;
     color: var(--accent);
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
-/* Стиль для обязательных полей */
 .required-asterisk {
     color: #e74c3c;
     margin-left: 4px;
     font-weight: bold;
 }
 
-/* Адаптивність */
+.address-details {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.address-details strong {
+    font-size: 22px;
+    color: var(--accent);
+}
+
+.guests-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.guests-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.hint-text {
+    font-size: 15px;
+    color: var(--text-light);
+    margin-top: 5px;
+    font-style: italic;
+}
+
 @media (min-width: 768px) {
     .wrapper {
         max-width: 700px;
@@ -468,7 +547,7 @@ button:disabled {
         width: 65%;
     }
     .calendar-grid {
-        max-width: 400px;
+        max-width: 450px;
     }
 }
 
@@ -492,10 +571,14 @@ button:disabled {
         width: 70%;
     }
     .slide img {
-        height: 280px;
+        height: 320px;
     }
     .slider-large .slide img {
-        height: 420px;
+        height: 480px;
+    }
+    .guests-row {
+        flex-direction: column;
+        gap: 0;
     }
 }
 </style>
@@ -541,23 +624,24 @@ button:disabled {
     <div class="photo-small">
         <img src="пара.jpg" alt="Ivan and Kseniya">
     </div>
+    
+    <div class="date-large">07.07.2026</div>
+    
     <div class="text">
         Будемо раді бачити вас у колі наших гостей!<br>
-        <span style="font-family:'Great Vibes',cursive;font-size:28px;color:var(--accent);">Ваня і Ксюша</span>
+        <span style="font-family:'Great Vibes',cursive;font-size:36px;color:var(--accent);">Ваня і Ксюша</span>
     </div>
 </div>
 
 <!-- ЛОКАЦІЯ -->
 <div class="section">
     <div class="script">Місце проведення</div>
-    <div class="text" style="font-size:18px;">
+    
+    <div class="address-details">
         <strong>Karma House</strong><br>
         Gościeńczyce 40A<br>
         05-600 Grójec<br>
-        <span style="font-size:14px;opacity:0.7;">(20 км від Piaseczna)</span>
-    </div>
-    <div class="text">
-        Для вашої зручності буде організовано трансфер
+        <span style="font-size:18px;opacity:0.7;">(20 км від Piaseczna)</span>
     </div>
     
     <div class="slider location-slider">
@@ -573,7 +657,15 @@ button:disabled {
         <div class="nav-dot"></div>
     </div>
     
-    <a href="https://maps.app.goo.gl/embed?pb=!1m18!1m12!1m3!1d2443.785123456789!2d20.9482905!3d51.9108632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471923bb5e6e3745%3A0xd9470cd668405dd3!2sKarma%20House!5e0!3m2!1suk!2spl!4v1234567890" class="btn" target="_blank">Перейти до карти</a>
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.785123456789!2d20.9482905!3d51.9108632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471923bb5e6e3745%3A0xd9470cd668405dd3!2sKarma%20House!5e0!3m2!1suk!2spl!4v1234567890" allowfullscreen loading="lazy"></iframe>
+    </div>
+    
+    <div class="text">
+        Для вашої зручності буде організовано трансфер
+    </div>
+    
+    <a href="https://maps.app.goo.gl/embed?pb=!1m18!1m12!1m3!1d2443.785123456789!2d20.9482905!3d51.9108632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471923bb5e6e3745%3A0xd9470cd668405dd3!2sKarma%20House!5e0!3m2!1suk!2spl!4v1234567890" class="btn" target="_blank">Відкрити в Google Maps</a>
 </div>
 
 <!-- ТАЙМІНГ -->
@@ -639,6 +731,19 @@ button:disabled {
             <input type="text" name="name" placeholder="Іван Іванов" required>
         </div>
         
+        <!-- НОВЫЕ ВОПРОСЫ ПРО ГОСТЕЙ И ДЕТЕЙ -->
+        <div class="form-group">
+            <label class="form-label">Скільки осіб буде разом із вами? <span class="required-asterisk">*</span></label>
+            <input type="number" name="guests_count" min="1" max="10" value="1" placeholder="Кількість осіб" required>
+            <div class="hint-text">Включаючи вас</div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Чи будуть діти? Якщо так - скільки?</label>
+            <input type="text" name="children_info" placeholder="Наприклад: так, 2 дитини (5 і 8 років)">
+            <div class="hint-text">Вкажіть кількість та вік дітей</div>
+        </div>
+        
         <div class="form-group">
             <label class="form-label">Чи плануєте бути присутніми? <span class="required-asterisk">*</span></label>
             <div class="radio-group">
@@ -686,21 +791,59 @@ button:disabled {
             </div>
         </div>
         
+        <!-- МЕНЮ С ВЫПАДАЮЩИМИ СПИСКАМИ -->
+        <div class="menu-section">
+            <div class="menu-title">Меню</div>
+            
+            <div class="menu-subtitle">Закуска (оберіть одну)</div>
+            <select name="starter" class="menu-select">
+                <option value="">-- Оберіть закуску --</option>
+                <option value="Tatar wołowy">Tatar wołowy z aioli truflowym i marynatami 150gr / Яловичий тартар з трюфельним айолі та маринованими овочами 150 г</option>
+                <option value="Śledź litewski">Śledź litewski w zaprawie z selera naciowego i gorczycy 150gr / Литовський оселедець у маринаді з селери та гірчиці 150 г</option>
+                <option value="Liście sałaty">Liście sałaty rzymskiej z ziołowymi grzankami, parmezanem, chrupiący kurczak 180gr / Листя римського салату з трав'яними грінками, пармезаном та хрусткою куркою 180 г</option>
+                <option value="Caprese">Caprese z pesto bazyliowym i prażonymi pestkami dyni 200gr / Капрезе з базиліковим песто та смаженим гарбузовим насінням 200 г</option>
+                <option value="Gravlax">Gravlax z łososia na sałatce z cytrusów i świeżych ziół 150gr / Гравлакс із лосося на салаті з цитрусів та свіжих трав 150 г</option>
+                <option value="Pate z kaczki">Pate z kaczki z grzybowym sosem tatarskiem, brioszka 150 gr / Паштет з качки з грибним татарським соусом, бріош 150 г</option>
+                <option value="Młode liście szpinaku">Młode liście szpinaku z gruszą, serem pleśniowym, orzechami włoskimi 150gr / Молоде листя шпинату з грушею, сиром з пліснявою та волоськими горіхами 150 г</option>
+                <option value="Plastry mlecznej cielęciny">Plastry mlecznej cielęciny z sosem tuńczykowym / Скибки молочної телятини з тунцевим соусом</option>
+            </select>
+            
+            <div class="menu-subtitle">Суп (оберіть один)</div>
+            <select name="soup" class="menu-select">
+                <option value="">-- Оберіть суп --</option>
+                <option value="Consommé">Consommé z kaczki z domowym makaronem / Консоме з качки з домашньою локшиною</option>
+                <option value="Orientalna zupa">Orientalna zupa z ciecierzycy z warzywami i chrispy chilli / Східний суп з нуту з овочами та хрустким чилі</option>
+                <option value="Żur">Żur na prawdziwkach z jajem i cielęcą kiełbasą / Жур на білих грибах з яйцем та телячою ковбасою</option>
+                <option value="Zupa krem">Zupa krem z pieczonego kalafiora z masłem orzechowym / Крем-суп із запеченої цвітної капусти з арахісовим маслом</option>
+                <option value="Flaki">Flaki po warszawsku oprószone serem bursztyn / Фляки по-варшавськи з сиром Бурштин</option>
+            </select>
+            
+            <div class="menu-subtitle">Основна страва (оберіть одну)</div>
+            <select name="main" class="menu-select">
+                <option value="">-- Оберіть основну страву --</option>
+                <option value="Schab wieprzowy">Schab wieprzowy w panko, ziemniaki w koprze, colesław z czerwonej kapusty / Свинячий шніцель у панко, картопля з кропом, коулсло з червоної капусти</option>
+                <option value="Devolaille">Devolaille z ziołami i masłem, puree ziemniaczane, mieszane sałaty w winegrecie / Деволай з травами та маслом, картопляне пюре, мікс салатів з вінегретом</option>
+                <option value="Grillowany stek z łososia">Grillowany stek z łososia z sosem winno-kaparowym, warzywa blanszowane z ziołami, młode ziemniaki / Стейк з лосося на грилі з винно-каперсовим соусом, бланшовані овочі з травами, молода картопля</option>
+                <option value="Risotto">Risotto z bobem i młodymi warzywami / Різото з бобами та молодими овочами</option>
+                <option value="Stek z bakłażana">Stek z bakłażana w sosie z pasty miso i pasty sezamowej z orzechami z ryżem jaśminowym / Стейк з баклажана в соусі з пасти місо та кунжутної пасти з горіхами, з жасминовим рисом</option>
+                <option value="Udko kaczki">Udko kaczki confit, kluski śląskie, sałatka z buraków / Качина ніжка конфі, сілезькі кльоцки, салат з буряка</option>
+            </select>
+            
+            <div class="menu-subtitle">Десерт (оберіть один)</div>
+            <select name="dessert" class="menu-select">
+                <option value="">-- Оберіть десерт --</option>
+                <option value="Szarlotka">Szarlotka z grójeckich jabłek / Яблучний пиріг з яблук Ґруєцьких</option>
+                <option value="Sernik">Sernik z słonym karmelem / Сирник із солоною карамеллю</option>
+            </select>
+        </div>
+        
         <div class="form-group">
             <label class="form-label">Додатково</label>
-            <textarea name="message" rows="3" placeholder="Ваші побажання, запитання ..."></textarea>
+            <textarea name="message" rows="3" placeholder="Ваші побажання, запитання, алергії..."></textarea>
         </div>
         
         <button type="submit" id="submitBtn">Надіслати</button>
     </form>
-</div>
-
-<!-- КАРТА -->
-<div class="section">
-    <div class="script">Місце урочистості</div>
-    <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.785123456789!2d20.9482905!3d51.9108632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471923bb5e6e3745%3A0xd9470cd668405dd3!2sKarma%20House!5e0!3m2!1suk!2spl!4v1234567890" allowfullscreen loading="lazy"></iframe>
-    </div>
 </div>
 
 <!-- ФІНАЛ -->
@@ -797,7 +940,7 @@ function createSlider(sliderSelector, navSelector) {
 createSlider('.location-slider', '.location-nav');
 createSlider('.story-slider', '.story-nav');
 
-// АНИМАЦИЯ МИГАНИЯ СЕРДЕЧКА ЧЕРЕЗ JS
+// АНИМАЦИЯ СЕРДЕЧКА
 function startHeartBlink() {
     const heartSvg = document.getElementById('heartSvg');
     if (!heartSvg) return;
@@ -822,16 +965,16 @@ function startHeartBlink() {
 
 startHeartBlink();
 
-// ОТПРАВКА ФОРМЫ ЧЕРЕЗ AJAX БЕЗ ПЕРЕАДРЕСАЦИИ
+// ОТПРАВКА ФОРМЫ
 const form = document.getElementById('rsvpForm');
 const submitBtn = document.getElementById('submitBtn');
 
 form.addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    // Проверка обязательных полей
     const name = form.querySelector('input[name="name"]').value.trim();
     const attendance = form.querySelector('input[name="attendance"]:checked');
+    const guestsCount = form.querySelector('input[name="guests_count"]').value;
     
     if (!name) {
         alert('Будь ласка, вкажіть ваше ім\'я та прізвище');
@@ -843,33 +986,50 @@ form.addEventListener('submit', async function(e) {
         return;
     }
     
+    if (!guestsCount || guestsCount < 1) {
+        alert('Будь ласка, вкажіть кількість осіб');
+        return;
+    }
+    
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Надсилання...';
     submitBtn.disabled = true;
     
-    // Собираем данные формы
     const formData = new FormData(form);
     
-    // Обрабатываем чекбоксы алкоголя (несколько значений)
+    // Алкоголь
     const alcoholCheckboxes = form.querySelectorAll('input[name="alcohol"]:checked');
     const alcoholValues = Array.from(alcoholCheckboxes).map(cb => cb.value);
     
-    // Получаем размещение (может быть не выбрано)
+    // Размещение
     const accommodationRadio = form.querySelector('input[name="accommodation"]:checked');
     const accommodation = accommodationRadio ? accommodationRadio.value : '';
     
-    // Создаём объект данных
+    // Меню из select
+    const starter = form.querySelector('select[name="starter"]').value;
+    const soup = form.querySelector('select[name="soup"]').value;
+    const main = form.querySelector('select[name="main"]').value;
+    const dessert = form.querySelector('select[name="dessert"]').value;
+    
     const data = {
         name: name,
+        guests_count: guestsCount,
+        children_info: formData.get('children_info') || '',
         attendance: attendance.value,
         phone: formData.get('phone') || '',
         accommodation: accommodation,
         alcohol: alcoholValues,
+        menu: {
+            starter: starter || 'Не обрано',
+            soup: soup || 'Не обрано',
+            main: main || 'Не обрано',
+            dessert: dessert || 'Не обрано'
+        },
         message: formData.get('message') || ''
     };
     
     try {
-        const response = await fetch('https://formspree.io/f/xaqlyaow', {
+        const response = await fetch('https://formspree.io/f/mojydvea', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -880,7 +1040,8 @@ form.addEventListener('submit', async function(e) {
         if (response.ok) {
             alert('Дякуємо! Ваші відповіді надіслано. Чекаємо вас на святі!');
             form.reset();
-            // Никакие радио-кнопки не выбираются автоматически после reset
+            // Устанавливаем значение по умолчанию для количества гостей
+            form.querySelector('input[name="guests_count"]').value = '1';
         } else {
             alert('Виникла помилка. Спробуйте ще раз або звʼяжіться з нами.');
         }

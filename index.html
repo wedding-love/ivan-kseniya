@@ -68,9 +68,8 @@ body {
     font-size: clamp(48px, 13vw, 68px);
     letter-spacing: 10px;
     font-weight: 400;
-    /* ИСПРАВЛЕНИЯ ТУТ: */
-    margin-bottom: 0;      /* Убираем нижний отступ полностью */
-    line-height: 1;        /* Уменьшаем высоту строки, чтобы текст не занимал лишнее место */
+    margin-bottom: 0;
+    line-height: 1;
 }
 
 .script {
@@ -94,9 +93,8 @@ body {
     font-size: 28px;
     letter-spacing: 4px;
     font-weight: 300;
-    /* ИСПРАВЛЕНИЯ ТУТ: */
-    margin-top: -10px;     /* Отрицательный margin подтянет дату вверх к слову Wedding */
-    margin-bottom: 20px;   /* Оставляем отступ снизу до фото */
+    margin-top: -10px;
+    margin-bottom: 20px;
 }
 
 .date-large {
@@ -522,6 +520,22 @@ button:disabled {
     color: var(--accent);
 }
 
+/* Стили для ссылки-локации (убирают подчеркивание и синий цвет) */
+.address-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+}
+
+.address-link:hover {
+    opacity: 0.8;
+}
+
+.address-link:hover .address-details strong {
+    color: var(--accent);
+}
+
 @media (min-width: 768px) {
     .wrapper {
         max-width: 700px;
@@ -619,11 +633,13 @@ button:disabled {
 <div class="section">
     <div class="script">Місце проведення</div>
     
-    <div class="address-details">
-        <strong>Karma House</strong><br>
-        Gościeńczyce 40A<br>
-        05-600 Grójec
-    </div>
+    <a href="https://karmahouse.pl/?gad_source=1&gad_campaignid=23695334521&gclid=CjwKCAjwtIfPBhAzEiwAv9RTJq1AnLohhSC1Tpa_Sk4vJJh4xRo91R96twrHcIuAdLBe0af1sOBICBoC2i0QAvD_BwE" target="_blank" class="address-link">
+        <div class="address-details">
+            <strong>Karma House</strong><br>
+            Gościeńczyce 40A<br>
+            05-600 Grójec
+        </div>
+    </a>
     
     <div class="slider location-slider">
         <div class="slides">

@@ -67,8 +67,10 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: clamp(48px, 13vw, 68px);
     letter-spacing: 10px;
-    margin-bottom: 5px;
     font-weight: 400;
+    /* ИСПРАВЛЕНИЯ ТУТ: */
+    margin-bottom: 0;      /* Убираем нижний отступ полностью */
+    line-height: 1;        /* Уменьшаем высоту строки, чтобы текст не занимал лишнее место */
 }
 
 .script {
@@ -89,10 +91,12 @@ body {
 
 .date {
     font-style: italic;
-    margin: 0 0 20px;
     font-size: 28px;
     letter-spacing: 4px;
     font-weight: 300;
+    /* ИСПРАВЛЕНИЯ ТУТ: */
+    margin-top: -10px;     /* Отрицательный margin подтянет дату вверх к слову Wedding */
+    margin-bottom: 20px;   /* Оставляем отступ снизу до фото */
 }
 
 .date-large {

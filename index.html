@@ -144,7 +144,7 @@ body {
     justify-content: center;
 }
 
-/* Исправление мигания сердечка — теперь статичный элемент без анимации */
+/* Стили для сердечка с анимацией через JS */
 .heart-day {
     position: relative;
     color: var(--accent);
@@ -152,7 +152,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Убрана любая анимация, opacity, transition, которые могли вызывать мигание */
 }
 
 .heart-day svg {
@@ -163,7 +162,8 @@ body {
     width: 36px;
     height: 36px;
     z-index: 0;
-    pointer-events: none; /* чтобы не перехватывал клики */
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .heart-day span {
@@ -261,13 +261,8 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* Увеличиваем блок истории любви: делаем слайдер больше и заметнее */
 .slider-large {
     margin: 25px -10px 10px;
-}
-
-.slider-large .slide img {
-    height: 420px;
 }
 
 .slides {
@@ -288,9 +283,8 @@ body {
     object-fit: cover;
 }
 
-/* Увеличенная высота для слайдера истории любви */
 .slider-large .slide img {
-    height: 520px; /* было 450px — увеличиваем для большего акцента */
+    height: 520px;
 }
 
 .slider-nav {
@@ -369,6 +363,7 @@ select {
     align-items: center;
     gap: 12px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .radio-item input, .checkbox-item input {
@@ -377,6 +372,7 @@ select {
     accent-color: var(--accent);
     margin: 0;
     padding: 0;
+    cursor: pointer;
 }
 
 button {
@@ -398,6 +394,11 @@ button {
 button:hover {
     background: #5a6345;
     transform: translateY(-2px);
+}
+
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 .map-container {
@@ -463,7 +464,7 @@ button:hover {
         height: 280px;
     }
     .slider-large .slide img {
-        height: 420px; /* чуть уменьшена для мобильных, но всё ещё крупнее стандартной */
+        height: 420px;
     }
 }
 </style>
@@ -471,7 +472,7 @@ button:hover {
 <body>
 <div class="wrapper">
 
-<!-- HERO з англійськими іменами -->
+<!-- HERO -->
 <div class="section">
     <div class="title">WEDDING</div>
     <div class="date">07.07.2026</div>
@@ -495,9 +496,9 @@ button:hover {
         <div class="day-cell">Пн</div><div class="day-cell">Вт</div><div class="day-cell">Ср</div><div class="day-cell">Чт</div><div class="day-cell">Пт</div><div class="day-cell">Сб</div><div class="day-cell">Нд</div>
         <div class="day-cell"></div><div class="day-cell"></div><div class="day-cell">1</div><div class="day-cell">2</div><div class="day-cell">3</div><div class="day-cell">4</div><div class="day-cell">5</div>
         <div class="day-cell">6</div>
-        <div class="day-cell heart-day">
+        <div class="day-cell heart-day" id="heartDay">
             <span>7</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" id="heartSvg">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
         </div>
@@ -510,7 +511,7 @@ button:hover {
         <img src="пара.jpg" alt="Ivan and Kseniya">
     </div>
     <div class="text">
-        Будемо раді бачити вас у колі наших гостей !<br>
+        Будемо раді бачити вас у колі наших гостей!<br>
         <span style="font-family:'Great Vibes',cursive;font-size:28px;color:var(--accent);">Ваня і Ксюша</span>
     </div>
 </div>
@@ -580,9 +581,8 @@ button:hover {
     </div>
 </div>
 
-<!-- LOVE STORY SLIDER — УВЕЛИЧЕН И БЕЗ ТЕКСТА "ІСТОРІЯ КОХАННЯ" -->
+<!-- LOVE STORY SLIDER -->
 <div class="section">
-    <!-- Заголовок полностью убран — блок просто слайдер, без подписи "Історія кохання" -->
     <div class="slider story-slider slider-large">
         <div class="slides">
             <div class="slide"><img src="4.jpg" alt="Історія 1"></div>
@@ -597,12 +597,12 @@ button:hover {
     </div>
 </div>
 
-<!-- RSVP ФОРМА — подключена к formspree -->
+<!-- RSVP ФОРМА -->
 <div class="section">
     <div class="script">Анкета підтвердження</div>
     <div class="text">Будемо вдячні, якщо Ви повідомите нам про своє рішення до 30.05.2026</div>
     
-    <form class="rsvp-form" id="rsvpForm" action="https://formspree.io/f/xaqlyaow" method="POST">
+    <form class="rsvp-form" id="rsvpForm">
         <div class="form-group">
             <label class="form-label">Ваше ім'я та прізвище</label>
             <input type="text" name="name" placeholder="Іван Іванов" required>
@@ -611,8 +611,12 @@ button:hover {
         <div class="form-group">
             <label class="form-label">Чи плануєте бути присутніми?</label>
             <div class="radio-group">
-                <label class="radio-item"><input type="radio" name="attendance" value="Так, із задоволенням" checked> Так, із задоволенням</label>
-                <label class="radio-item"><input type="radio" name="attendance" value="На жаль, не зможу"> На жаль, не зможу</label>
+                <label class="radio-item">
+                    <input type="radio" name="attendance" value="Так, із задоволенням" checked> Так, із задоволенням
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="attendance" value="На жаль, не зможу"> На жаль, не зможу
+                </label>
             </div>
         </div>
         
@@ -624,18 +628,30 @@ button:hover {
         <div class="form-group">
             <label class="form-label">Чи потрібне Вам розміщення?</label>
             <div class="radio-group">
-                <label class="radio-item"><input type="radio" name="accommodation" value="Так"> Так</label>
-                <label class="radio-item"><input type="radio" name="accommodation" value="Ні" checked> Ні</label>
+                <label class="radio-item">
+                    <input type="radio" name="accommodation" value="Так"> Так
+                </label>
+                <label class="radio-item">
+                    <input type="radio" name="accommodation" value="Ні" checked> Ні
+                </label>
             </div>
         </div>
         
         <div class="form-group">
             <label class="form-label">Якому алкоголю надаєте перевагу?</label>
             <div class="checkbox-group">
-                <label class="checkbox-item"><input type="checkbox" name="alcohol" value="Міцні напої"> Міцні напої</label>
-                <label class="checkbox-item"><input type="checkbox" name="alcohol" value="Ігристе вино / шампанське"> Ігристе вино / шампанське</label>
-                <label class="checkbox-item"><input type="checkbox" name="alcohol" value="Вино (червоне/біле)"> Вино (червоне/біле)</label>
-                <label class="checkbox-item"><input type="checkbox" name="alcohol" value="Не вживаю алкоголь"> Не вживаю алкоголь</label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="alcohol" value="Міцні напої"> Міцні напої
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="alcohol" value="Ігристе вино / шампанське"> Ігристе вино / шампанське
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="alcohol" value="Вино (червоне/біле)"> Вино (червоне/біле)
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="alcohol" value="Не вживаю алкоголь"> Не вживаю алкоголь
+                </label>
             </div>
         </div>
         
@@ -644,7 +660,7 @@ button:hover {
             <textarea name="message" rows="3" placeholder="Ваші побажання, запитання, алергії..."></textarea>
         </div>
         
-        <button type="submit">Надіслати</button>
+        <button type="submit" id="submitBtn">Надіслати</button>
     </form>
 </div>
 
@@ -662,7 +678,7 @@ button:hover {
         Чекаємо Вас на нашому святі!
     </div>
     <div class="signature">
-        З любов'ю, Ксенія та Іван
+        З любовʼю, Ксенія та Іван
     </div>
 </div>
 
@@ -750,25 +766,84 @@ function createSlider(sliderSelector, navSelector) {
 createSlider('.location-slider', '.location-nav');
 createSlider('.story-slider', '.story-nav');
 
-// Отправка формы через formspree — браузер сам обработает POST, но оставим приятное уведомление
+// АНИМАЦИЯ МИГАНИЯ СЕРДЕЧКА ЧЕРЕЗ JS
+function startHeartBlink() {
+    const heartSvg = document.getElementById('heartSvg');
+    if (!heartSvg) return;
+    
+    let opacity = 1;
+    let direction = -1;
+    
+    setInterval(() => {
+        opacity += direction * 0.05;
+        
+        if (opacity <= 0.3) {
+            opacity = 0.3;
+            direction = 1;
+        } else if (opacity >= 1) {
+            opacity = 1;
+            direction = -1;
+        }
+        
+        heartSvg.style.opacity = opacity;
+    }, 50);
+}
+
+startHeartBlink();
+
+// ОТПРАВКА ФОРМЫ ЧЕРЕЗ AJAX БЕЗ ПЕРЕАДРЕСАЦИИ
 const form = document.getElementById('rsvpForm');
-form.addEventListener('submit', function(e) {
-    // Не отменяем стандартное поведение, чтобы форма ушла на formspree.
-    // Просто покажем уведомление и изменим кнопку визуально (не мешая отправке)
-    const btn = form.querySelector('button');
-    const originalText = btn.textContent;
-    btn.textContent = 'НАДСИЛАННЯ...';
-    btn.disabled = true;
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
     
-    // Через небольшой таймаут вернем текст, но форма уже уйдет
-    setTimeout(() => {
-        // Не сбрасываем форму, чтобы данные не потерялись, но если formspree редирект — то норм
-        btn.textContent = originalText;
-        btn.disabled = false;
-    }, 1500);
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Надсилання...';
+    submitBtn.disabled = true;
     
-    // Опционально можно показать алерт, но лучше не мешать редиректу
-    // alert('Дякуємо! Вашу відповідь надіслано.');
+    // Собираем данные формы
+    const formData = new FormData(form);
+    
+    // Обрабатываем чекбоксы алкоголя (несколько значений)
+    const alcoholCheckboxes = form.querySelectorAll('input[name="alcohol"]:checked');
+    const alcoholValues = Array.from(alcoholCheckboxes).map(cb => cb.value);
+    
+    // Создаём объект данных
+    const data = {
+        name: formData.get('name'),
+        attendance: formData.get('attendance'),
+        phone: formData.get('phone'),
+        accommodation: formData.get('accommodation'),
+        alcohol: alcoholValues,
+        message: formData.get('message')
+    };
+    
+    try {
+        const response = await fetch('https://formspree.io/f/xaqlyaow', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+            alert('Дякуємо! Ваші відповіді надіслано. Чекаємо вас на святі!');
+            form.reset();
+            // Возвращаем checked по умолчанию для радиокнопок
+            document.querySelector('input[name="attendance"][value="Так, із задоволенням"]').checked = true;
+            document.querySelector('input[name="accommodation"][value="Ні"]').checked = true;
+        } else {
+            alert('Виникла помилка. Спробуйте ще раз або звʼяжіться з нами.');
+        }
+    } catch (error) {
+        console.error('Помилка:', error);
+        alert('Помилка зʼєднання. Перевірте інтернет та спробуйте знову.');
+    } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    }
 });
 
 window.addEventListener('load', () => {

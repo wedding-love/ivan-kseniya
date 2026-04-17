@@ -79,7 +79,6 @@ body {
     line-height: 1.2;
 }
 
-/* Уменьшенный заголовок для анкеты */
 .script-small {
     font-family: 'Great Vibes', cursive;
     font-size: clamp(38px, 12vw, 52px);
@@ -511,12 +510,12 @@ button:disabled {
     font-style: italic;
 }
 
-/* Уменьшенная подпись */
 .signature-small {
     font-family: 'Great Vibes', cursive;
     font-size: 42px;
     color: var(--accent);
     margin-top: 20px;
+    white-space: nowrap; /* Запрет переноса на новую строку */
 }
 
 .required-asterisk {
@@ -533,13 +532,6 @@ button:disabled {
 .address-details strong {
     font-size: 21px;
     color: var(--accent);
-}
-
-.optional-badge {
-    font-size: 14px;
-    color: var(--text-light);
-    font-weight: 400;
-    margin-left: 8px;
 }
 
 @media (min-width: 768px) {
@@ -578,6 +570,9 @@ button:disabled {
     }
     .slider-large .slide img {
         height: 480px;
+    }
+    .signature-small {
+        font-size: 36px; /* Уменьшаем на мобильных чтобы поместилось в строку */
     }
 }
 </style>
@@ -731,7 +726,7 @@ button:disabled {
         </div>
         
         <div class="form-group">
-            <label class="form-label">Скільки осіб буде разом із вами? <span class="optional-badge">(не обов'язково)</span></label>
+            <label class="form-label">Скільки осіб буде разом із вами?</label>
             <input type="number" name="guests_count" min="1" max="10" placeholder="Кількість осіб">
         </div>
         
@@ -835,7 +830,7 @@ button:disabled {
         
         <div class="form-group">
             <label class="form-label">Додатково</label>
-            <textarea name="message" rows="3" placeholder="Ваші побажання, запитання, алергії..."></textarea>
+            <textarea name="message" rows="3" placeholder="Ваші побажання, запитання..."></textarea>
         </div>
         
         <button type="submit" id="submitBtn">Надіслати</button>

@@ -26,7 +26,7 @@ body {
     background: var(--bg);
     color: var(--text-dark);
     line-height: 1.7;
-    font-size: 19px; /* Уменьшен на 1 */
+    font-size: 19px;
 }
 
 .wrapper {
@@ -74,6 +74,15 @@ body {
 .script {
     font-family: 'Great Vibes', cursive;
     font-size: clamp(42px, 13vw, 58px);
+    margin-bottom: 25px;
+    color: var(--accent);
+    line-height: 1.2;
+}
+
+/* Уменьшенный заголовок для анкеты */
+.script-small {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(38px, 12vw, 52px);
     margin-bottom: 25px;
     color: var(--accent);
     line-height: 1.2;
@@ -377,15 +386,13 @@ select {
     background-position: right 18px center;
     background-size: 14px;
     padding-right: 45px;
-    color: var(--text-light); /* Серый цвет для select */
+    color: var(--text-light);
 }
 
-/* Серый цвет для всех опций в select */
 select option {
     color: var(--text-dark);
 }
 
-/* Стиль для первого option - серый */
 select option:first-child {
     color: var(--text-light);
 }
@@ -448,11 +455,10 @@ select option:first-child {
 }
 
 .menu-subtitle {
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 500;
     margin: 25px 0 8px;
-    color: var(--text-light);
-    font-style: italic;
+    color: var(--text-dark);
 }
 
 .menu-select {
@@ -505,9 +511,10 @@ button:disabled {
     font-style: italic;
 }
 
-.signature {
+/* Уменьшенная подпись */
+.signature-small {
     font-family: 'Great Vibes', cursive;
-    font-size: 46px;
+    font-size: 42px;
     color: var(--accent);
     margin-top: 20px;
 }
@@ -526,6 +533,13 @@ button:disabled {
 .address-details strong {
     font-size: 21px;
     color: var(--accent);
+}
+
+.optional-badge {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 400;
+    margin-left: 8px;
 }
 
 @media (min-width: 768px) {
@@ -707,7 +721,7 @@ button:disabled {
 
 <!-- RSVP ФОРМА -->
 <div class="section">
-    <div class="script">Анкета підтвердження</div>
+    <div class="script-small">Анкета підтвердження</div>
     <div class="text">Будемо вдячні, якщо Ви повідомите нам про своє рішення до 30.05.2026</div>
     
     <form class="rsvp-form" id="rsvpForm">
@@ -717,8 +731,8 @@ button:disabled {
         </div>
         
         <div class="form-group">
-            <label class="form-label">Скільки осіб буде разом із вами? <span class="required-asterisk">*</span></label>
-            <input type="number" name="guests_count" min="1" max="10" value="1" required>
+            <label class="form-label">Скільки осіб буде разом із вами? <span class="optional-badge">(не обов'язково)</span></label>
+            <input type="number" name="guests_count" min="1" max="10" placeholder="Кількість осіб">
         </div>
         
         <div class="form-group">
@@ -779,7 +793,8 @@ button:disabled {
             
             <div class="menu-subtitle">Оберіть закуску</div>
             <select name="starter" class="menu-select">
-                <option value="">Tatar wołowy z aioli truflowym i marynatami 150gr / Яловичий тартар з трюфельним айолі та маринованими овочами 150 г</option>
+                <option value="">Оберіть зі списку</option>
+                <option value="Tatar wołowy">Tatar wołowy z aioli truflowym i marynatami 150gr / Яловичий тартар з трюфельним айолі та маринованими овочами 150 г</option>
                 <option value="Śledź litewski">Śledź litewski w zaprawie z selera naciowego i gorczycy 150gr / Литовський оселедець у маринаді з селери та гірчиці 150 г</option>
                 <option value="Liście sałaty">Liście sałaty rzymskiej z ziołowymi grzankami, parmezanem, chrupiący kurczak 180gr / Листя римського салату з трав'яними грінками, пармезаном та хрусткою куркою 180 г</option>
                 <option value="Caprese">Caprese z pesto bazyliowym i prażonymi pestkami dyni 200gr / Капрезе з базиліковим песто та смаженим гарбузовим насінням 200 г</option>
@@ -791,7 +806,8 @@ button:disabled {
             
             <div class="menu-subtitle">Оберіть суп</div>
             <select name="soup" class="menu-select">
-                <option value="">Consommé z kaczki z domowym makaronem / Консоме з качки з домашньою локшиною</option>
+                <option value="">Оберіть зі списку</option>
+                <option value="Consommé">Consommé z kaczki z domowym makaronem / Консоме з качки з домашньою локшиною</option>
                 <option value="Orientalna zupa">Orientalna zupa z ciecierzycy z warzywami i chrispy chilli / Східний суп з нуту з овочами та хрустким чилі</option>
                 <option value="Żur">Żur na prawdziwkach z jajem i cielęcą kiełbasą / Жур на білих грибах з яйцем та телячою ковбасою</option>
                 <option value="Zupa krem">Zupa krem z pieczonego kalafiora z masłem orzechowym / Крем-суп із запеченої цвітної капусти з арахісовим маслом</option>
@@ -800,7 +816,8 @@ button:disabled {
             
             <div class="menu-subtitle">Оберіть основну страву</div>
             <select name="main" class="menu-select">
-                <option value="">Schab wieprzowy w panko, ziemniaki w koprze, colesław z czerwonej kapusty / Свинячий шніцель у панко, картопля з кропом, коулсло з червоної капусти</option>
+                <option value="">Оберіть зі списку</option>
+                <option value="Schab wieprzowy">Schab wieprzowy w panko, ziemniaki w koprze, colesław z czerwonej kapusty / Свинячий шніцель у панко, картопля з кропом, коулсло з червоної капусти</option>
                 <option value="Devolaille">Devolaille z ziołami i masłem, puree ziemniaczane, mieszane sałaty w winegrecie / Деволай з травами та маслом, картопляне пюре, мікс салатів з вінегретом</option>
                 <option value="Grillowany stek z łososia">Grillowany stek z łososia z sosem winno-kaparowym, warzywa blanszowane z ziołami, młode ziemniaki / Стейк з лосося на грилі з винно-каперсовим соусом, бланшовані овочі з травами, молода картопля</option>
                 <option value="Risotto">Risotto z bobem i młodymi warzywami / Різото з бобами та молодими овочами</option>
@@ -810,7 +827,8 @@ button:disabled {
             
             <div class="menu-subtitle">Оберіть десерт</div>
             <select name="dessert" class="menu-select">
-                <option value="">Szarlotka z grójeckich jabłek / Яблучний пиріг з яблук Ґруєцьких</option>
+                <option value="">Оберіть зі списку</option>
+                <option value="Szarlotka">Szarlotka z grójeckich jabłek / Яблучний пиріг з яблук Ґруєцьких</option>
                 <option value="Sernik">Sernik z słonym karmelem / Сирник із солоною карамеллю</option>
             </select>
         </div>
@@ -829,7 +847,7 @@ button:disabled {
     <div class="final-text">
         Чекаємо Вас на нашому святі!
     </div>
-    <div class="signature">
+    <div class="signature-small">
         З любовʼю, Ксенія та Іван
     </div>
 </div>
@@ -952,7 +970,6 @@ form.addEventListener('submit', async function(e) {
     
     const name = form.querySelector('input[name="name"]').value.trim();
     const attendance = form.querySelector('input[name="attendance"]:checked');
-    const guestsCount = form.querySelector('input[name="guests_count"]').value;
     
     if (!name) {
         alert('Будь ласка, вкажіть ваше ім\'я та прізвище');
@@ -964,16 +981,14 @@ form.addEventListener('submit', async function(e) {
         return;
     }
     
-    if (!guestsCount || guestsCount < 1) {
-        alert('Будь ласка, вкажіть кількість осіб');
-        return;
-    }
-    
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Надсилання...';
     submitBtn.disabled = true;
     
     const formData = new FormData(form);
+    
+    // Количество гостей (необязательное)
+    const guestsCount = formData.get('guests_count') || '';
     
     // Алкоголь
     const alcoholCheckboxes = form.querySelectorAll('input[name="alcohol"]:checked');
@@ -1023,7 +1038,6 @@ form.addEventListener('submit', async function(e) {
         if (response.ok) {
             alert('Дякуємо! Ваші відповіді надіслано. Чекаємо вас на святі!');
             form.reset();
-            form.querySelector('input[name="guests_count"]').value = '1';
         } else {
             alert('Виникла помилка. Спробуйте ще раз або звʼяжіться з нами.');
         }

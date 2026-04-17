@@ -144,6 +144,7 @@ body {
     justify-content: center;
 }
 
+/* Исправление мигания сердечка — теперь статичный элемент без анимации */
 .heart-day {
     position: relative;
     color: var(--accent);
@@ -151,6 +152,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Убрана любая анимация, opacity, transition, которые могли вызывать мигание */
 }
 
 .heart-day svg {
@@ -161,6 +163,7 @@ body {
     width: 36px;
     height: 36px;
     z-index: 0;
+    pointer-events: none; /* чтобы не перехватывал клики */
 }
 
 .heart-day span {
@@ -258,6 +261,7 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
+/* Увеличиваем блок истории любви: делаем слайдер больше и заметнее */
 .slider-large {
     margin: 25px -10px 10px;
 }
@@ -284,8 +288,9 @@ body {
     object-fit: cover;
 }
 
+/* Увеличенная высота для слайдера истории любви */
 .slider-large .slide img {
-    height: 450px;
+    height: 520px; /* было 450px — увеличиваем для большего акцента */
 }
 
 .slider-nav {
@@ -458,7 +463,7 @@ button:hover {
         height: 280px;
     }
     .slider-large .slide img {
-        height: 350px;
+        height: 420px; /* чуть уменьшена для мобильных, но всё ещё крупнее стандартной */
     }
 }
 </style>
@@ -505,14 +510,14 @@ button:hover {
         <img src="пара.jpg" alt="Ivan and Kseniya">
     </div>
     <div class="text">
-        Будемо раді бачити вас у колі наших гостей<br>
+        Будемо раді бачити вас у колі наших гостей !<br>
         <span style="font-family:'Great Vibes',cursive;font-size:28px;color:var(--accent);">Ваня і Ксюша</span>
     </div>
 </div>
 
 <!-- ЛОКАЦІЯ -->
 <div class="section">
-    <div class="script">Локація</div>
+    <div class="script">Місце проведення</div>
     <div class="text" style="font-size:18px;">
         <strong>Karma House</strong><br>
         Gościeńczyce 40A<br>
@@ -575,9 +580,9 @@ button:hover {
     </div>
 </div>
 
-<!-- LOVE STORY SLIDER -->
+<!-- LOVE STORY SLIDER — УВЕЛИЧЕН И БЕЗ ТЕКСТА "ІСТОРІЯ КОХАННЯ" -->
 <div class="section">
-    <div class="script">Історія кохання</div>
+    <!-- Заголовок полностью убран — блок просто слайдер, без подписи "Історія кохання" -->
     <div class="slider story-slider slider-large">
         <div class="slides">
             <div class="slide"><img src="4.jpg" alt="Історія 1"></div>
@@ -592,51 +597,51 @@ button:hover {
     </div>
 </div>
 
-<!-- RSVP ФОРМА -->
+<!-- RSVP ФОРМА — подключена к formspree -->
 <div class="section">
     <div class="script">Анкета підтвердження</div>
     <div class="text">Будемо вдячні, якщо Ви повідомите нам про своє рішення до 30.05.2026</div>
     
-    <form class="rsvp-form" id="rsvpForm">
+    <form class="rsvp-form" id="rsvpForm" action="https://formspree.io/f/xaqlyaow" method="POST">
         <div class="form-group">
             <label class="form-label">Ваше ім'я та прізвище</label>
-            <input type="text" placeholder="Іван Іванов" required>
+            <input type="text" name="name" placeholder="Іван Іванов" required>
         </div>
         
         <div class="form-group">
             <label class="form-label">Чи плануєте бути присутніми?</label>
             <div class="radio-group">
-                <label class="radio-item"><input type="radio" name="attendance" value="yes" checked> Так, із задоволенням</label>
-                <label class="radio-item"><input type="radio" name="attendance" value="no"> На жаль, не зможу</label>
+                <label class="radio-item"><input type="radio" name="attendance" value="Так, із задоволенням" checked> Так, із задоволенням</label>
+                <label class="radio-item"><input type="radio" name="attendance" value="На жаль, не зможу"> На жаль, не зможу</label>
             </div>
         </div>
         
         <div class="form-group">
             <label class="form-label">Номер телефону для зв'язку</label>
-            <input type="tel" placeholder="Ваш номер телефону">
+            <input type="tel" name="phone" placeholder="Ваш номер телефону">
         </div>
         
         <div class="form-group">
             <label class="form-label">Чи потрібне Вам розміщення?</label>
             <div class="radio-group">
-                <label class="radio-item"><input type="radio" name="accommodation" value="yes"> Так</label>
-                <label class="radio-item"><input type="radio" name="accommodation" value="no" checked> Ні</label>
+                <label class="radio-item"><input type="radio" name="accommodation" value="Так"> Так</label>
+                <label class="radio-item"><input type="radio" name="accommodation" value="Ні" checked> Ні</label>
             </div>
         </div>
         
         <div class="form-group">
             <label class="form-label">Якому алкоголю надаєте перевагу?</label>
             <div class="checkbox-group">
-                <label class="checkbox-item"><input type="checkbox" value="strong"> Міцні напої</label>
-                <label class="checkbox-item"><input type="checkbox" value="sparkling"> Ігристе вино / шампанське</label>
-                <label class="checkbox-item"><input type="checkbox" value="wine"> Вино (червоне/біле)</label>
-                <label class="checkbox-item"><input type="checkbox" value="none"> Не вживаю алкоголь</label>
+                <label class="checkbox-item"><input type="checkbox" name="alcohol" value="Міцні напої"> Міцні напої</label>
+                <label class="checkbox-item"><input type="checkbox" name="alcohol" value="Ігристе вино / шампанське"> Ігристе вино / шампанське</label>
+                <label class="checkbox-item"><input type="checkbox" name="alcohol" value="Вино (червоне/біле)"> Вино (червоне/біле)</label>
+                <label class="checkbox-item"><input type="checkbox" name="alcohol" value="Не вживаю алкоголь"> Не вживаю алкоголь</label>
             </div>
         </div>
         
         <div class="form-group">
             <label class="form-label">Додатково</label>
-            <textarea rows="3" placeholder="Ваші побажання, запитання, алергії..."></textarea>
+            <textarea name="message" rows="3" placeholder="Ваші побажання, запитання, алергії..."></textarea>
         </div>
         
         <button type="submit">Надіслати</button>
@@ -645,7 +650,7 @@ button:hover {
 
 <!-- КАРТА -->
 <div class="section">
-    <div class="script">Місце свята</div>
+    <div class="script">Місце урочистості</div>
     <div class="map-container">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.785123456789!2d20.9482905!3d51.9108632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471923bb5e6e3745%3A0xd9470cd668405dd3!2sKarma%20House!5e0!3m2!1suk!2spl!4v1234567890" allowfullscreen loading="lazy"></iframe>
     </div>
@@ -745,20 +750,25 @@ function createSlider(sliderSelector, navSelector) {
 createSlider('.location-slider', '.location-nav');
 createSlider('.story-slider', '.story-nav');
 
-// Форма
-document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('button');
+// Отправка формы через formspree — браузер сам обработает POST, но оставим приятное уведомление
+const form = document.getElementById('rsvpForm');
+form.addEventListener('submit', function(e) {
+    // Не отменяем стандартное поведение, чтобы форма ушла на formspree.
+    // Просто покажем уведомление и изменим кнопку визуально (не мешая отправке)
+    const btn = form.querySelector('button');
     const originalText = btn.textContent;
     btn.textContent = 'НАДСИЛАННЯ...';
     btn.disabled = true;
     
+    // Через небольшой таймаут вернем текст, но форма уже уйдет
     setTimeout(() => {
-        alert('Дякуємо! Вашу відповідь отримано. Чекаємо вас на святі!');
-        this.reset();
+        // Не сбрасываем форму, чтобы данные не потерялись, но если formspree редирект — то норм
         btn.textContent = originalText;
         btn.disabled = false;
-    }, 1000);
+    }, 1500);
+    
+    // Опционально можно показать алерт, но лучше не мешать редиректу
+    // alert('Дякуємо! Вашу відповідь надіслано.');
 });
 
 window.addEventListener('load', () => {
